@@ -9,15 +9,16 @@ int main(){
   char c[128];
   char *name = "foo.txt";
   int fd = open(name, O_WRONLY);
+  printf("file was read\n");
   printf("fd = %d\n", fd);
   if (fd < 0)
-    printf("File already exists. File not created or opened.\n");
+    printf("File does not exist. File not opened.\n");
 
   char added[] = "hello friends";
   write(fd, added, 128);
   printf("hello friends was written\n");
   if (close(fd) < 0) {
-    printf("File already exists. File not closed.\n");
+    printf("File does not exist. File not closed.\n");
     exit(1);
   }
   printf("closed the fd\n");
@@ -31,5 +32,6 @@ int main(){
   //printf("'%s'\n", c);
   printf("Closing '%s'\n", name);
   close(fd1);
+  printf("file was closed\n");
   return 0;
 }
